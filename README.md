@@ -1,21 +1,43 @@
-# Olá, eu sou o Rafael 👋
+ARQUIVO = "usuarios.txt"
 
-🎓 Estudante de Ciência da Computação (3º semestre) na Barão de Mauá  
-💻 Linguagens: C++ e Python  
-📍 Viradouro – SP  
-🚀 Buscando oportunidade de estágio em Tecnologia  
+def cadastrar_usuario():
+    nome = input("Digite o nome: ")
+    idade = input("Digite a idade: ")
+    email = input("Digite o email: ")
 
-## 🛠️ Tecnologias e conhecimentos
-- C++
-- Python
-- Lógica de Programação
-- Algoritmos
-- Git e GitHub
+    with open(ARQUIVO, "a", encoding="utf-8") as arquivo:
+        arquivo.write(f"Nome: {nome} | Idade: {idade} | Email: {email}\n")
 
-## 📂 Projetos acadêmicos
-- Projeto sobre **Carros Autônomos**, envolvendo pesquisa em IA, sensores e automação
-- Exercícios e projetos desenvolvidos durante a graduação
+    print("\n✅ Usuário cadastrado com sucesso!\n")
 
-## 📫 Contato
-- LinkedIn: https://www.linkedin.com/in/rafael-pereira-497b2b3aa
-- E-mail: rafaelpereiraalves2006@gmail.com
+
+def listar_usuarios():
+    try:
+        with open(ARQUIVO, "r", encoding="utf-8") as arquivo:
+            print("\n📋 Usuários cadastrados:")
+            print(arquivo.read())
+    except FileNotFoundError:
+        print("\n⚠️ Nenhum usuário cadastrado ainda.\n")
+
+
+def menu():
+    while True:
+        print("==== MENU ====")
+        print("1 - Cadastrar usuário")
+        print("2 - Listar usuários")
+        print("3 - Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            cadastrar_usuario()
+        elif opcao == "2":
+            listar_usuarios()
+        elif opcao == "3":
+            print("\n👋 Saindo do programa...")
+            break
+        else:
+            print("\n❌ Opção inválida!\n")
+
+
+menu()
